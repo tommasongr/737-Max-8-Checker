@@ -4,22 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>737 Max 8 - Checker</title>
+    <title>737 Max 8 Checker 🛩</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Hello</h1>
-    <form onsubmit="othername(); return false">
-        <input type="text" id="userInput">
-        <input type="submit" value="Submit">
-    </form>
-    <span id="result">Result</span>
+    <div id="mainContainer">
+        <h1>737 Max 8 Checker 🛩</h1>
+        <h2>Enter your flight code</h2>
+        <form id="formFlightCode" onsubmit="othername(); return false">
+            <input type="text" id="userInput" maxlength="6" minlength="4" placeholder="e.g: FR4664">
+            <input type="submit" value="Submit 🤞" id="formInputBtn">
+        </form>
+    </div>
+    <span id="result"></span>
+    <a href="https://www.wikihow.com/Survive-a-Plane-Crash" target="_blank">
+        <button id="panicBtn" class="hidden">
+            <span>DON'T<br/>PANIC</span>
+        </button>
+    </a>
 
     <script>
         function othername() {
             var input = document.getElementById("userInput").value;
             var valueAPI = 'http://aviation-edge.com/v2/public/flights?key=002a16-94be96&flightIata=' + input + '&limit=1'
-            console.log(valueAPI);
 
             // API CALL
             var request = new XMLHttpRequest()
@@ -33,19 +40,19 @@
                     if (data[0] !== undefined && data[0].aircraft.icaoCode !== undefined) {
                         var aircraftModel = data[0].aircraft.icaoCode;
                         var resultBox = document.getElementById("result")
-                        console.log(aircraftModel)
 
                         if (aircraftModel != 'B38M') {
-                            resultBox.innerHTML = 'Questo non è un 737 Max 8! ;-)'
+                            resultBox.innerHTML = 'You are NOT flying on a 737 Max 8 🥳'
                         } else {
-                            resultBox.innerHTML = 'Questo è un 737 Max 8... Ci dispiace :-('
+                            resultBox.innerHTML = 'You are FLYING on a 737 Max 8!!! 😱'
+                            document.getElementById("panicBtn").classList.remove('hidden')
                         }
 
                     } else {
                         alert('No flight detected by this code')
                     }
                 } else {
-                    console.log('NO DATA ACQUIRED')
+                    alert('NO DATA ACQUIRED')
                 }
             }
 
