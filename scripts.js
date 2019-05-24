@@ -1,6 +1,6 @@
 function aircraftChecker() {
     let input = document.getElementById("userInput").value;
-    let valueAPI = 'http://aviation-edge.com/v2/public/flights?key=002a16-94be96&flightIata=' + input;
+    let valueAPI = 'https://aviation-edge.com/v2/public/flights?key=002a16-94be96&flightIata=' + input;
     let output = document.getElementById("result");
 
     // API CALL
