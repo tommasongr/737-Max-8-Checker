@@ -2,6 +2,7 @@ function aircraftChecker() {
     let input = document.getElementById("userInput").value;
     let valueAPI = 'https://aviation-edge.com/v2/public/flights?key=002a16-94be96&flightIata=' + input;
     let output = document.getElementById("result");
+    document.getElementById("panicBtn").classList.add('hidden');
 
     // API CALL
     fetch(valueAPI).then(response => {
