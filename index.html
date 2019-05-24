@@ -11,11 +11,12 @@
     <div id="mainContainer">
         <h1>737 Max 8 Checker 🛩</h1>
         <h2>Enter your flight code</h2>
-        <form id="formFlightCode" onsubmit="othername(); return false">
+        <form id="formFlightCode" onsubmit="aircraftChecker(); return false">
             <input type="text" id="userInput" maxlength="6" minlength="4" placeholder="e.g: FR4664">
             <input type="submit" value="Submit 🤞" id="formInputBtn">
         </form>
     </div>
+
     <span id="result"></span>
     <a href="https://www.wikihow.com/Survive-a-Plane-Crash" target="_blank">
         <button id="panicBtn" class="hidden">
@@ -23,41 +24,6 @@
         </button>
     </a>
 
-    <script>
-        function othername() {
-            var input = document.getElementById("userInput").value;
-            var valueAPI = 'http://aviation-edge.com/v2/public/flights?key=002a16-94be96&flightIata=' + input + '&limit=1'
-
-            // API CALL
-            var request = new XMLHttpRequest()
-
-            request.open('GET', valueAPI, true)
-            request.onload = function() {
-                // Begin accessing JSON data here
-                var data = JSON.parse(this.response)
-
-                if (request.status >= 200 && request.status < 400) {
-                    if (data[0] !== undefined && data[0].aircraft.icaoCode !== undefined) {
-                        var aircraftModel = data[0].aircraft.icaoCode;
-                        var resultBox = document.getElementById("result")
-
-                        if (aircraftModel != 'B38M') {
-                            resultBox.innerHTML = 'You are NOT flying on a 737 Max 8 🥳'
-                        } else {
-                            resultBox.innerHTML = 'You are FLYING on a 737 Max 8!!! 😱'
-                            document.getElementById("panicBtn").classList.remove('hidden')
-                        }
-
-                    } else {
-                        alert('No flight detected by this code')
-                    }
-                } else {
-                    alert('NO DATA ACQUIRED')
-                }
-            }
-
-            request.send()
-        }
-    </script>
+    <script src="/scripts.js"></script>
 </body>
 </html>
