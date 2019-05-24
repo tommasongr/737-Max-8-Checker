@@ -28,7 +28,7 @@ function aircraftChecker() {
             case '':
                 output.innerHTML = 'I could not detect your aircraft model 🤷‍♂️';
                 break;
-            case 'B38M':
+            case 'B738':
                 output.innerHTML = 'You are FLYING on a 737 Max 8!!! 😱';
                 document.getElementById("panicBtn").classList.remove('hidden');
                 break;
